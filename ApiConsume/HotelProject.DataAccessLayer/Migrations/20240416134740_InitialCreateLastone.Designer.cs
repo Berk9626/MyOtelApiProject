@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelProject.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230919103804_mig_add_guest")]
-    partial class mig_add_guest
+    [Migration("20240416134740_InitialCreateLastone")]
+    partial class InitialCreateLastone
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -196,6 +196,33 @@ namespace HotelProject.DataAccessLayer.Migrations
                     b.HasKey("BookingId");
 
                     b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("HotelProject.EntityLayer.Concrete.Contact", b =>
+                {
+                    b.Property<int>("ContactId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Mail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ContactId");
+
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("HotelProject.EntityLayer.Concrete.Guest", b =>

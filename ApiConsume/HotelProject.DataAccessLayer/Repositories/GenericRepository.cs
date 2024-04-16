@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HotelProject.DataAccessLayer.Repositories
 {
-    public class GenericRepository<T> : IGenericDal<T> where T : class
+    public class GenericRepository<T> : IGenericDal<T> where T : class, new()
     {
         private readonly Context _context;
 

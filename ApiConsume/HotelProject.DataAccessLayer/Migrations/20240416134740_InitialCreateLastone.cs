@@ -3,17 +3,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HotelProject.DataAccessLayer.Migrations
 {
-    public partial class add_identity : Migration
+    public partial class InitialCreateLastone : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "Description",
-                table: "Rooms",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(int),
-                oldType: "int");
+            migrationBuilder.CreateTable(
+                name: "Abouts",
+                columns: table => new
+                {
+                    AboutId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoomCount = table.Column<int>(type: "int", nullable: false),
+                    StaffCount = table.Column<int>(type: "int", nullable: false),
+                    CustomerCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Abouts", x => x.AboutId);
+                });
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
@@ -57,6 +67,141 @@ namespace HotelProject.DataAccessLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bookings",
+                columns: table => new
+                {
+                    BookingId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Checkin = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Checkout = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AdultCount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ChildCount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoomCount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SpecialRequest = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bookings", x => x.BookingId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contacts",
+                columns: table => new
+                {
+                    ContactId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contacts", x => x.ContactId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Guests",
+                columns: table => new
+                {
+                    GuestId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Guests", x => x.GuestId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rooms",
+                columns: table => new
+                {
+                    RoomId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoomNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoomCoverImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BadCount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BathCount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Wifi = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rooms", x => x.RoomId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Services",
+                columns: table => new
+                {
+                    ServiceId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ServiceIcon = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Services", x => x.ServiceId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Staffs",
+                columns: table => new
+                {
+                    StaffId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SocialMedia1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SocialMedia2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SocialMedia3 = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Staffs", x => x.StaffId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Subscribes",
+                columns: table => new
+                {
+                    SubscribeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Mail = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subscribes", x => x.SubscribeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Testimonials",
+                columns: table => new
+                {
+                    TestimonialId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Testimonials", x => x.TestimonialId);
                 });
 
             migrationBuilder.CreateTable(
@@ -208,6 +353,9 @@ namespace HotelProject.DataAccessLayer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Abouts");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -223,20 +371,34 @@ namespace HotelProject.DataAccessLayer.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Bookings");
+
+            migrationBuilder.DropTable(
+                name: "Contacts");
+
+            migrationBuilder.DropTable(
+                name: "Guests");
+
+            migrationBuilder.DropTable(
+                name: "Rooms");
+
+            migrationBuilder.DropTable(
+                name: "Services");
+
+            migrationBuilder.DropTable(
+                name: "Staffs");
+
+            migrationBuilder.DropTable(
+                name: "Subscribes");
+
+            migrationBuilder.DropTable(
+                name: "Testimonials");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "Description",
-                table: "Rooms",
-                type: "int",
-                nullable: false,
-                defaultValue: 0,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
         }
     }
 }

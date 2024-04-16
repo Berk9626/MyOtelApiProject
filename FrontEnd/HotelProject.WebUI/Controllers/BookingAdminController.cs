@@ -43,7 +43,7 @@ namespace HotelProject.WebUI.Controllers
             var jsonData = JsonConvert.SerializeObject(approvedReservationDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-            var responsemessage = await client.PutAsync("http://localhost:59815/api/Booking/bbbb/dtoid", content);
+            var responsemessage = await client.PutAsync($"http://localhost:59815/api/Booking/bbbb/{approvedReservationDto.BookingId}", content);
             if (responsemessage.IsSuccessStatusCode)
             {
 
